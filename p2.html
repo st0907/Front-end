@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mulah Registration</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: auto;
+      padding: 40px;
+      color: #444;
+    }
+    h1 {
+      color: #f60;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+      width: 80%;
+      max-width: 300px;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .birthday-inputs input {
+      width: 60px;
+      margin: 5px;
+    }
+    .btn {
+      background-color: #f60;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    .error {
+      color: red;
+      font-size: 12px;
+    }
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .checkbox {
+      margin-top: 10px;
+    }
+    small {
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>MULAH</h1>
+  <h2>Registration</h2>
+  <p>Please fill up your details.</p>
+
+  <form onsubmit="handleSubmit(event)">
+    <label>Name</label>
+    <input type="text" id="name" placeholder="Enter Name" />
+    <div id="name-error" class="error">*Please insert a name.</div>
+
+    <label>Birthday</label>
+    <div class="birthday-inputs">
+      <input type="number" id="day" placeholder="DD" min="1" max="31" />
+      <input type="number" id="month" placeholder="MM" min="1" max="12" />
+      <input type="number" id="year" placeholder="YYYY" min="1900" max="2100" />
+    </div>
+    <div id="birthday-error" class="error">*Please insert your birthday.</div>
+
+    <label>Email</label>
+    <input type="email" id="email" placeholder="Email Address" />
+    <div id="email-error" class="error">*Please insert a valid email address.</div>
+    <div class="checkbox">
+      <input type="checkbox" id="noEmail" onclick="toggleEmail()" />
+      <label for="noEmail" style="display: inline;">No email address</label>
+    </div>
+
+    <button class="btn" type="submit">Continue</button>
+  </form>
+
+  <script>
+    function toggleEmail() {
+      const emailInput = document.getElementById("email");
+      if (document.getElementById("noEmail").checked) {
+        emailInput.disabled = true;
+        emailInput.value = "N/A";
+      } else {
+        emailInput.disabled = false;
+        emailInput.value = "";
+      }
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      let valid = true;
+
+      const name = document.getElementById("name").value.trim();
+      const day = document.getElementById("day").value;
+      const month = document.getElementById("month").value;
+      const year = document.getElementById("year").value;
+      const email = document.getElementById("email").value.trim();
+
+      // Clear previous errors
+      document.getElementById("name-error").style.display = name ? "none" : "block";
+      document.getElementById("birthday-error").style.display = (day && month && year) ? "none" : "block";
+      document.getElementById("email-error").style.display = (email && email.includes("@")) || document.getElementById("noEmail").checked ? "none" : "block";
+
+      if (!name || !day || !month || !year || (!email.includes("@") && !document.getElementById("noEmail").checked)) {
+        valid = false;
+      }
+
+      if (valid) {
+        const birthday = `${day.padStart(2, '0')}/${month.padStart(2, '0')}/${year}`;
+        localStorage.setItem("name", name);
+        localStorage.setItem("birthday", birthday);
+        localStorage.setItem("email", email);
+        window.location.href = "p3.html";
+      }
+    }
+  </script>
+</body>
+</html>

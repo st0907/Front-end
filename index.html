@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1 - Check Loyalty Points</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        button:hover {
+            background-color: rgb(255, 183, 0);
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: #f60;">MULAH</h1>
+    <h2 style="font-family: 'Times New Roman', serif;">Hello, Welcome!</h2>
+    <p style="color: #f60;">Check Your Loyalty Points & Rewards</p>
+    <input type="tel" 
+        id="phoneNumber"
+        pattern="^\+60\d{8,9}$"
+        placeholder="Enter your phone number"
+        title="Phone number should start with +60"
+        required>
+    <br>
+    <button onclick="checkPhone()">Check Loyalty Points</button>
+
+    <script>
+        function checkPhone() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const validPhoneNumber = "+60173527250";
+
+            // Check if the phone number matches the valid number
+            if (phoneNumber === validPhoneNumber) {
+                window.location.href = "p2.html"; // Redirect to Page 2
+            } else {
+                alert("Invalid phone number. Please try again.");
+            }
+        }
+    </script>
+    <br>
+    <footer>
+        <p>Powered by MulahRewards.com</p>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 3 - Display Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .info {
+            background-color: #fff;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .info p {
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #f60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+        button:hover {
+            background-color: rgb(255, 183, 0);
+        }
+    </style>
+</head>
+<body>
+    <h1>Thank you for submitting your information!</h1>
+    <div class="info">
+        <h2>Phone Number</h2>
+        <p id="phoneNumber"></p>
+        <h2>Name</h2>
+        <p id="name"></p>
+        <h2>Email</h2>
+        <p id="email"></p>
+        <h2>Birthday</h2>
+        <p id="birthday"></p>
+    </div>
+    <button onclick="goBack()">Go Back</button>
+
+    <script>
+        // Fetch the data from localStorage and display it
+        document.getElementById('phoneNumber').textContent = localStorage.getItem('phoneNumber');
+        document.getElementById('name').textContent = localStorage.getItem('name');
+        document.getElementById('email').textContent = localStorage.getItem('email');
+        document.getElementById('birthday').textContent = localStorage.getItem('birthday');
+
+        // Function to go back to Page 2 if needed
+        function goBack() {
+            window.location.href = "p2.html";
+        }
+    </script>
+</body>
+</html>
